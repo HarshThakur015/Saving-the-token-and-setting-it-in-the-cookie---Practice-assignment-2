@@ -1,8 +1,17 @@
 {
+  "name": "jwt-encryption-decryption",
+  "version": "1.0.0",
+  "description": "A project to encrypt and decrypt JWT tokens.",
+  "main": "server.js",
   "scripts": {
-    "start": "servor --reload"
+    "start": "node server.js"
   },
   "dependencies": {
-    "servor": "^4.0.2"
-  }
+    "express": "^4.17.1",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1",
+    "crypto": "^1.0.1"
+  },
+  "author": "Harsh Thakur",
+  "license": "ISC"
 }

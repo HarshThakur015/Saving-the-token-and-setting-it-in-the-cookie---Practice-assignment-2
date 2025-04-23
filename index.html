@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+<html>
+<head>
+  <title>Encrypt Payload</title>
+</head>
+<body>
+  <h1>Enter Payload to Encrypt</h1>
+  <input id="username" placeholder="Username">
+  <input id="role" placeholder="Role">
+  <button onclick="sendPayload()">Encrypt</button>
+
+  <p id="token"></p>
+  <button onclick="window.location.href='/page2'">Go to Decrypt Page</button>
+
+  <script>
+    async function sendPayload() {
+      const payload = {
+        username: document.getElementById('username').value,
+        role: document.getElementById('role').value
+      };
+
+      const res = await fetch('/encrypt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      document.getElementById('token').innerText = `Token: ${data.token}`;
+    }
+  </script>
+</body>
 </html>
